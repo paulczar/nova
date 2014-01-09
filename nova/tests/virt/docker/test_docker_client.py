@@ -86,7 +86,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
         self.mox.ReplayAll()
 
         client = nova.virt.docker.client.DockerHTTPClient(mock_conn)
-        container_id = client.create_container({})
+        container_id = client.create_container({},'FAKE_UUID')
         self.assertEqual('XXX', container_id)
 
         self.mox.VerifyAll()
@@ -128,7 +128,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
             'Memory': 512,
             'Image': 'example',
         }
-        container_id = client.create_container(args)
+        container_id = client.create_container(args,'FAKE_UUID')
         self.assertEqual('XXX', container_id)
 
         self.mox.VerifyAll()
@@ -146,7 +146,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
         self.mox.ReplayAll()
 
         client = nova.virt.docker.client.DockerHTTPClient(mock_conn)
-        container_id = client.create_container({})
+        container_id = client.create_container({},'FAKE_UUID')
         self.assertIsNone(container_id)
 
         self.mox.VerifyAll()
@@ -163,7 +163,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
         self.mox.ReplayAll()
 
         client = nova.virt.docker.client.DockerHTTPClient(mock_conn)
-        container_id = client.create_container({})
+        container_id = client.create_container({},'FAKE_UUID')
         self.assertIsNone(container_id)
 
         self.mox.VerifyAll()
