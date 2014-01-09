@@ -76,7 +76,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
             'Volumes': {},
             'VolumesFrom': '',
         })
-        mock_conn.request('POST', '/v1.4/containers/create',
+        mock_conn.request('POST', '/v1.4/containers/create?name=FAKE_UUID',
                           body=expected_body,
                           headers={'Content-Type': 'application/json'})
         response = FakeResponse(201, data='{"id": "XXX"}',
@@ -113,7 +113,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
             'Volumes': {},
             'VolumesFrom': '',
         })
-        mock_conn.request('POST', '/v1.4/containers/create',
+        mock_conn.request('POST', '/v1.4/containers/create?name=FAKE_UUID',
                           body=expected_body,
                           headers={'Content-Type': 'application/json'})
         response = FakeResponse(201, data='{"id": "XXX"}',
@@ -136,7 +136,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
     def test_create_container_no_id_in_response(self):
         mock_conn = self.mox.CreateMockAnything()
 
-        mock_conn.request('POST', '/v1.4/containers/create',
+        mock_conn.request('POST', '/v1.4/containers/create?name=FAKE_UUID',
                           body=mox.IgnoreArg(),
                           headers={'Content-Type': 'application/json'})
         response = FakeResponse(201, data='{"ping": "pong"}',
@@ -154,7 +154,7 @@ class DockerHTTPClientTestCase(test.NoDBTestCase):
     def test_create_container_bad_return_code(self):
         mock_conn = self.mox.CreateMockAnything()
 
-        mock_conn.request('POST', '/v1.4/containers/create',
+        mock_conn.request('POST', '/v1.4/containers/create?name=FAKE_UUID',
                           body=mox.IgnoreArg(),
                           headers={'Content-Type': 'application/json'})
         response = FakeResponse(400)

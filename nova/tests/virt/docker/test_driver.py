@@ -143,7 +143,7 @@ class DockerDriverTestCase(_VirtDriverTestCase, test.TestCase):
                           instance=utils.get_test_instance(),
                           network_info=None)
 
-    def test_create_container(self, image_info=None):
+    def test_create_container(self, image_info=None, name=FAKE_UUID):
         instance_href = utils.get_test_instance()
         if image_info is None:
             image_info = utils.get_test_image_info(None, instance_href)

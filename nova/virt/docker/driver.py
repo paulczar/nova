@@ -262,7 +262,7 @@ class DockerDriver(driver.ComputeDriver):
         if fmt != 'docker':
             msg = _('Image container format not supported ({0})')
             raise exception.InstanceDeployFailure(msg.format(fmt),
-                instance_id=instance['name'])
+                instance_id=instance['uuid'])
         registry_port = self._get_registry_port()
         return '{0}:{1}/{2}'.format(CONF.my_ip,
                                     registry_port,
@@ -295,7 +295,7 @@ class DockerDriver(driver.ComputeDriver):
             if res is False:
                 raise exception.InstanceDeployFailure(
                     _('Cannot pull missing image'),
-                    instance_id=instance['name'])
+                    instance_id=instance['uuid'])
             container_id = self.docker.create_container(args, instance['uuid'])
             if not container_id:
                 raise exception.InstanceDeployFailure(
@@ -307,7 +307,7 @@ class DockerDriver(driver.ComputeDriver):
         except Exception as e:
             msg = _('Cannot setup network: {0}')
             raise exception.InstanceDeployFailure(msg.format(e),
-                                                  instance_id=instance['name'])
+                                                  instance_id=instance['uuid'])
 
     def destroy(self, context, instance, network_info, block_device_info=None,
             destroy_disks=True):
